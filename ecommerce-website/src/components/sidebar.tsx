@@ -64,8 +64,8 @@ const Sidebar = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow">
-        <button onClick={() => setIsOpen(true)} className="m-4    rounded ">
+      <div className="flex-grow flex mr-2">
+        <button onClick={() => setIsOpen(true)} className="    rounded ">
           <Menu size={26} />
         </button>
       </div>

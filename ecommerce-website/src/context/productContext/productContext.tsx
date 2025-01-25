@@ -14,7 +14,7 @@ export interface IStates {
   products: [];
   newArrivals: [];
 }
-export const ProductContext = createContext({});
+export const ProductContext = createContext({}) ;
 const initialState: IStates = {
   isLoading: false,
   isError: false,

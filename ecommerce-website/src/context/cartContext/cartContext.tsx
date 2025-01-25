@@ -3,16 +3,15 @@
 import { createContext, useContext, useReducer } from "react";
 import { IProduct } from "@/types/productType";
 import { reducer } from "@/context/reducer/cartReducer";
-const CartContext = createContext({});
-interface ICart {
-  cart: [];
-  totalItems: string;
-  totalQuantity: string;
-}
-const initialState: ICart = {
+import { ICartStates, ICartContext } from "../contextTypes";
+
+const CartContext = createContext<ICartContext | undefined>(undefined);
+
+const initialState: ICartStates = {
   cart: [],
   totalItems: "",
   totalQuantity: "",
+
 };
 export const CartProvider = ({
   children,
@@ -31,8 +30,18 @@ export const CartProvider = ({
       payload: { color, size, quantity, product },
     });
   };
+  const removeToCart = (id:string, color:string, size:string) => {
+    dispatch({
+      type: "removeToCart", payload:{id, color , size}});
+
+  }
+  const clearCart = () => {
+    dispatch({
+      type: "clearCart",
+    });
+  }
   return (
-    <CartContext.Provider value={{ ...state, addToCart }}>
+    <CartContext.Provider value={{ ...state, addToCart, removeToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

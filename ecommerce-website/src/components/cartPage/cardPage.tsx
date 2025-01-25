@@ -16,12 +16,12 @@ export const CartPage = () => {
           <span className="text-black">Cart</span>
         </div>
       </div>
-      <h1 className="text-[40px] font-bold font-oswald mt-4 mb-3">Your Cart</h1>
+      <h1 className="text-[40px] font-bold font-oswald mt-4 mb-3">{cart.length === 0 ? "Your Cart is Empty" : "Your Cart"}</h1>
       <div className=" grid grid-cols-1 md:grid-cols-[minmax(0,60%),minmax(0,40%)] gap-4">
         {cart.length > 0 && (
           <>
             <CartItem cartItemInfo={cart} />
-            <OrderSummary />
+            <OrderSummary cartItem = {cart}/>
           </>
         )}
 

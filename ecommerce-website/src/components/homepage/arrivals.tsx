@@ -1,4 +1,4 @@
-import { useProductContext } from "../../context/product/productContext";
+import { useProductContext } from "../../context/productContext/productContext";
 import { IProduct } from "@/types/productType";
 import { ProductCard } from "../productcard/card";
 import Link from "next/link";
@@ -20,6 +20,7 @@ export const Arrivalsection = () => {
           </h1>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-2 cs:grid-cols-3 xl:grid-cols-4 gap-8">
+          
           {productInfo.map((product: IProduct, i:number) => {
             return (
               // <Link >

@@ -4,8 +4,9 @@ import "./globals.css";
 import { Oswald, Inter } from "next/font/google";
 import { TopHeader, Header } from "@/components/homepage/header";
 import { FooterSec } from "@/components/homepage/footer";
-import { ProductProvider } from "../context/product/productContext";
+import { ProductProvider } from "../context/productContext/productContext";
 import { CartProvider } from "@/context/cartContext/cartContext";
+import { FilterContextProvider } from "@/context/filterContext/filtercontext";
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",
@@ -44,10 +45,12 @@ export default function RootLayout({
       >
         <ProductProvider>
           <CartProvider>
-            <TopHeader />
-            <Header />
-            {children}
-            <FooterSec />
+            <FilterContextProvider>
+              <TopHeader />
+              <Header />
+              {children}
+              <FooterSec />
+            </FilterContextProvider>
           </CartProvider>
         </ProductProvider>
       </body>

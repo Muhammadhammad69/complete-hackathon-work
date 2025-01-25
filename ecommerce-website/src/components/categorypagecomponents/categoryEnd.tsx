@@ -5,8 +5,8 @@ import { totalPage } from "./categoryCards";
 import { FaEllipsis } from "react-icons/fa6";
 export const Pagination = ({ page }: { page: number }) => {
   const pageNumbers = [];
-  console.log("page", page);
-  console.log("total", totalPage);
+  // console.log("page", page);
+  // console.log("total", totalPage);
   for (let i = page - 1; i <= page + 1; i++) {
     if (i >= 1 && page <= totalPage) {
       pageNumbers.push(i);
@@ -20,7 +20,7 @@ export const Pagination = ({ page }: { page: number }) => {
       pageNumbers.push(pageNumbers[pageNumbers.length - 1] + 1);
     }
   }
-  console.log(pageNumbers);
+  // console.log(pageNumbers);
 
   return (
     <div className="flex items-center justify-between w-full  mx-auto mt-8 font-satoshi">

@@ -2,8 +2,8 @@
 import React from "react";
 import { IProduct } from "@/types/productType";
 import { ProductCard } from "@/components/productcard/card";
-import { useProductContext } from "@/context/product/productContext";
-import { IStates } from "@/context/product/productContext";
+import { useProductContext } from "@/context/productContext/productContext";
+import { IStates } from "@/context/productContext/productContext";
 
 
 export const ArrivalsPage = () => {

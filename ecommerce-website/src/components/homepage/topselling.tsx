@@ -1,6 +1,6 @@
 import React from "react";
-import { IStates } from "@/context/product/productContext";
-import { useProductContext } from "@/context/product/productContext";
+import { IStates } from "@/context/productContext/productContext";
+import { useProductContext } from "@/context/productContext/productContext";
 import { IProduct } from "@/types/productType";
 import { ProductCard } from "@/components/productcard/card";
 import Link from "next/link";

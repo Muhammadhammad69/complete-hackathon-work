@@ -1,4 +1,4 @@
-import { IStates } from "../product/productContext";
+import { IStates } from "../productContext/productContext";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const reducer = (state: IStates, action: any) => {
@@ -12,8 +12,6 @@ export const reducer = (state: IStates, action: any) => {
       })
       state.newArrivals = isNew;
       return { ...state, isLoading: false, products: action.payload };
-    case "singleProduct":
-      return { ...state, isLoading: false, singleProduct: action.payload };
     case "isError":
       return { ...state, isLoading: false, isError: action.payload };
     default:

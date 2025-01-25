@@ -11,7 +11,7 @@ import Link from "next/link";
 export const ProductCard: React.FC<{ product: IProduct }> = ({
   product,
 }) => {
-  // console.log(productInfo);
+  // console.log("cardProduct==>",product);
   return (
     <>
     <Link href={`/product/${product._id}`}>
@@ -19,7 +19,7 @@ export const ProductCard: React.FC<{ product: IProduct }> = ({
       {/* Image Section */}
       <div className=" rounded-[2rem] flex justify-center items-center ">
         <Image
-          src={urlFor(product.image).width(300).height(298).url()}
+          src={urlFor(product.image).width(300).height(298).quality(100).url()}
           width={300}
           height={300}
           alt={product.name}

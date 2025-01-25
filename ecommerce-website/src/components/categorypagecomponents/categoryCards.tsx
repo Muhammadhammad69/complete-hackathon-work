@@ -1,10 +1,12 @@
 "use client";
 import { ProductCard } from "../productcard/card";
 import { IProduct } from "@/types/productType";
-import { useProductContext } from "@/context/product/productContext";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "./categoryEnd";
-import {IProductContext} from "@/context/contextTypes"
+import { IFilterContext, IProductContext} from "@/context/contextTypes";
+import {useFilterContext} from "@/context/filterContext/filtercontext"
+import { useProductContext } from "@/context/productContext/productContext";
+
 let totalProducts: number;
 const defaultPage = 1; 
 const productsPerPage = 9;
@@ -12,17 +14,17 @@ export let totalPage: number;
 
 export const CategoryCards = () => {
   // console.log(searchParams);
+  const {products} = useProductContext() as IProductContext
+  const {isLoading, sortingProducts} = useFilterContext() as IFilterContext;
+  
+  // console.log("sortingProducts", sortingProducts);
   const searchParams = useSearchParams();
   const searchPage = searchParams.get("page");
-  console.log("search", searchPage);
-
+  // console.log("search", searchPage);
   const page: number = searchPage ? Number(searchPage) : defaultPage;
-  // console.log("productType", productType);
-  const { isLoading, products } = useProductContext() as IProductContext;
-
-  // console.log(newArrivals);
-  const productInfo: IProduct[] = products;
-  totalProducts = products.length;
+  // console.log("pagesNumber", page);
+  const productInfo: IProduct[]  = sortingProducts.length===0 ? products : sortingProducts;
+  totalProducts = sortingProducts.length === 0 ? products.length : sortingProducts.length;
   totalPage = Math.ceil(totalProducts / productsPerPage);
   if(isLoading) return <div>Loading...</div>
   if (page < 1 || page > totalPage) return <div>Page not found</div>
