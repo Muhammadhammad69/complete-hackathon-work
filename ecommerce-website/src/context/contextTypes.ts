@@ -18,7 +18,7 @@ export interface IProductContext {
 export interface ICartStates {
     cart: [];
     totalItems: string;
-    totalQuantity: string;
+    totalQuantity: number;
   }
 export interface ICartContext extends ICartStates{
     

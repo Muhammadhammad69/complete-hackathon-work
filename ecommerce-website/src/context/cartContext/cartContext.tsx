@@ -10,7 +10,7 @@ const CartContext = createContext<ICartContext | undefined>(undefined);
 const initialState: ICartStates = {
   cart: [],
   totalItems: "",
-  totalQuantity: "",
+  totalQuantity: 0,
 
 };
 export const CartProvider = ({

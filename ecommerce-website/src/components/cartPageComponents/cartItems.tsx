@@ -134,7 +134,7 @@ export const OrderSummary = ({ cartItem }: { cartItem: ICartItem[] }) => {
       Math.round((curr.price * curr.quantity * curr.discountPercent) / 100),
     0
   );
-  console.log("cartItem", cartItem);
+  // console.log("cartItem", cartItem);
   return (
     <div className="">
       <div className="space-y-4 font-satoshi  mx-auto border-2 px-4 py-4 rounded-[20px] text-gray-600">

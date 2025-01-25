@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Check, Minus, Plus, ShoppingCart } from "lucide-react";
+import { Check, Minus, Plus, } from "lucide-react";
 import { IProduct } from "@/types/productType";
-import {useCart} from "@/context/cartContext/cartContext"
-import {ICartContext} from "@/context/contextTypes"
+import {CartToast} from "@/components/toast/cartToast"
 export const ProductVariant = ({ product }: { product: IProduct }) => {
-  const {addToCart} = useCart() as ICartContext;
   const { colors, sizes, stockQuantity } = product;
   // const stockQuantity = 2
-  const sortOrder = ['S', 'M', 'L', 'XL', 'XXL'];
+  const sortOrder = ["S", "M", "L", "XL", "XXL"];
   const sortedSizes = sortOrder.filter((size) => sizes.includes(size));
   const [quantity, setQuantity] = useState(1);
   const [colorName, setColorName] = useState(colors[0]);
@@ -32,24 +30,25 @@ export const ProductVariant = ({ product }: { product: IProduct }) => {
         <div className="flex space-x-3 mt-2">
           {/* {colors && ( */}
 
-          
-          {colors && colors.map((color: string, i:number) => {
-            return (
-              <button
-              style={{ backgroundColor: color.toLowerCase() }}
-                className={`w-8 h-8 rounded-full flex justify-center items-center
-                  ${color.toLowerCase() === "white"? "border-black border":""}
+          {colors &&
+            colors.map((color: string, i: number) => {
+              return (
+                <button
+                  style={{ backgroundColor: color.toLowerCase() }}
+                  className={`w-8 h-8 rounded-full flex justify-center items-center
+                  ${color.toLowerCase() === "white" ? "border-black border" : ""}
                 ${colorName.toLowerCase() === color.toLowerCase() ? "opacity-100" : ""}
                ${color.toLowerCase() === "black" ? "text-white" : "text-black"}  border-black `}
-                
-                onClick={()=>setColorName(color)}
-                key={i}
-              >
-                {colorName.toLowerCase() === color.toLowerCase() && <Check size={20} />}
-                {/* <Check size={20}  /> */}
-              </button>
-            );
-          })}
+                  onClick={() => setColorName(color)}
+                  key={i}
+                >
+                  {colorName.toLowerCase() === color.toLowerCase() && (
+                    <Check size={20} />
+                  )}
+                  {/* <Check size={20}  /> */}
+                </button>
+              );
+            })}
         </div>
       </div>
       <hr className="my-5" />
@@ -65,7 +64,7 @@ export const ProductVariant = ({ product }: { product: IProduct }) => {
                 text-gray-700  
                 ${size === isSize ? "bg-black text-white" : "bg-mainColor"}
                 hover:bg-black hover:text-white text-[14px] xs:text-[16px] `}
-                onClick={() => setIsSize(size)}
+              onClick={() => setIsSize(size)}
             >
               {size}
             </button>
@@ -78,29 +77,37 @@ export const ProductVariant = ({ product }: { product: IProduct }) => {
         <div className="flex items-center space-x-4 border rounded-[62px] px-4 py-2 bg-mainColor  justify-between w-full xs:w-1/2 md:w-[70%] dl:w-1/2">
           <button
             onClick={decrementQuantity}
-            className={`text-gray-500 ${quantity > 1 ?"hover:text-black":   ""}`}
-            disabled = {quantity > 1 ? false : true}
+            className={`text-gray-500 ${quantity > 1 ? "hover:text-black" : ""}`}
+            disabled={quantity > 1 ? false : true}
           >
             <Minus size={20} />
           </button>
-          {Number(stockQuantity) === 0 ? (<span className="flex items-center justify-center text-[14px] text-center  font-satoshi">Out of Stock</span>):
-          (<span className="text-[14px] sm:text-[20px]">{quantity}</span>)}
+          {Number(stockQuantity) === 0 ? (
+            <span className="flex items-center justify-center text-[14px] text-center  font-satoshi">
+              Out of Stock
+            </span>
+          ) : (
+            <span className="text-[14px] sm:text-[20px]">{quantity}</span>
+          )}
           <button
             onClick={incrementQuantity}
-            className={`text-gray-500 ${quantity < stockQuantity ?"hover:text-black": "" } `
-            }
-            disabled = {quantity < stockQuantity ? false : true}
+            className={`text-gray-500 ${quantity < stockQuantity ? "hover:text-black" : ""} `}
+            disabled={quantity < stockQuantity ? false : true}
           >
             <Plus size={20} />
           </button>
         </div>
         {/* <Link href="/cart" className="flex w-full xs:w-[90%] md:w-full dl:w-1/2"> */}
-        <button className="flex items-center space-x-4 bg-black text-white px-6 py-3 rounded-[62px] w-full xs:w-[90%] md:w-full dl:w-1/2  justify-center"
-        onClick={() => addToCart(colorName,isSize,quantity,product)}
-        >
-          <ShoppingCart size={16} />
-          <span>Add to Cart</span>
-        </button>
+        <div className="flex w-full xs:w-[50%] md:w-full dl:w-1/2">
+        <CartToast cartInfo = {{colorName, isSize, quantity, product}}/>
+          {/* <button
+            className="flex items-center space-x-4 bg-black text-white px-6 py-3 rounded-[62px] w-full  justify-center"
+            onClick={() => addToCart(colorName, isSize, quantity, product)}
+          >
+            <ShoppingCart size={16} />
+            <span>Add to Cart</span>
+          </button> */}
+        </div>
         {/* </Link> */}
       </div>
     </>

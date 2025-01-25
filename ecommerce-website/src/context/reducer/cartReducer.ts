@@ -26,6 +26,7 @@ export const reducer = (state: any, action: any) => {
         return {
           ...state,
           cart: [...updatedCart],
+          totalQuantity: state.totalQuantity + quantity
         };
       }
 
@@ -43,20 +44,28 @@ export const reducer = (state: any, action: any) => {
       }
       return {
         ...state,
-        cart: [...state.cart, cartItem]
+        cart: [...state.cart, cartItem],
+        totalQuantity: state.totalQuantity + quantity
       }
     case "removeToCart":
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const updateCart = state.cart.filter((item: any) => !(item.id === action.payload.id && item.color === action.payload.color && item.size === action.payload.size))
-
+      let newTotalQuantity = 0;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      updateCart.forEach((item: any) => {
+        newTotalQuantity += item.quantity;
+      });
+       
       return {
         ...state,
-        cart: [...updateCart]
+        cart: [...updateCart],
+        totalQuantity: newTotalQuantity
       }
     case "clearCart":
       return {
         ...state,
-        cart: []
+        cart: [],
+        totalQuantity: 0
       }
     default:
       return state
