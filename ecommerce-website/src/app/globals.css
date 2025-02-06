@@ -8,3 +8,25 @@
     --radius: 0.5rem;
   }
 }
+
+.t-slider .rc-slider-handle {
+  background-color: black !important; /* Change thumb color */
+  /* border: 2px solid red !important; */
+  border: none !important;
+  opacity: 1 !important;
+  width: 18px !important;
+  height: 18px !important;
+  /* box-shadow: 0 0 5px rgba(255, 87, 51, 0.5) !important; */
+}
+.t-slider .rc-slider-handle:active{
+  /* border: 2px solid red !important; */
+  box-shadow: none !important;
+}
+.t-slider .rc-slider-track {
+  background-color: black !important; /* Track color */
+  height: 6px !important;
+}
+.t-slider .rc-slider-rail {
+  background-color: #ddd !important; /* Rail (background) color */
+  height: 6px !important;
+}

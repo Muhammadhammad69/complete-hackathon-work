@@ -55,13 +55,46 @@ export const reducer = (state: any, action: any) => {
       updateCart.forEach((item: any) => {
         newTotalQuantity += item.quantity;
       });
-       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const removeItem = state.cart.filter((item: any) => (item.id === action.payload.id && item.color === action.payload.color && item.size === action.payload.size))
+      // console.log("removeItems", removeItem);
+      const sendDeleteItem = async () => {
+        try {
+          /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+          const resp = await fetch(`/api/delete-cart-items`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ cart: removeItem }),
+          })
+
+        } catch (error) {
+          console.log("error", error);
+        }
+      }
+      sendDeleteItem();
       return {
         ...state,
         cart: [...updateCart],
         totalQuantity: newTotalQuantity
       }
     case "clearCart":
+      const clearCartItem = async () => {
+        try {
+          /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+          const resp = await fetch(`/api/delete-cart-items`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ cart: state.cart }),
+          });
+        } catch (error) {
+          console.log("error", error);
+        }
+      }
+      clearCartItem();
       return {
         ...state,
         cart: [],

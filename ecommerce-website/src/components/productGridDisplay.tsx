@@ -4,7 +4,7 @@ import { CategoryTop } from "./categorypagecomponents/categoryTop";
 
 export const CategoryPage = () => {
   return (
-      <div className="w-[99%] xs:w-[95%] 2xl:w-[1400px] mx-auto mt-4 flex gap-x-8 ">
+      <div className="w-[95%] xs:w-[95%] 2xl:w-[1400px] mx-auto mt-4 flex gap-x-8 ">
         <div className="hidden lg:block">
         <MainFilter />
         </div>

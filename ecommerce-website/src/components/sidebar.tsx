@@ -6,7 +6,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex font-satoshi cs:hidden">
+    <div className="flex font-satoshi cs:hidden z-10">
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full bg-white  transition-transform ${

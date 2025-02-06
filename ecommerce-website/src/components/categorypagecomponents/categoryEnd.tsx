@@ -3,6 +3,7 @@ import React from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { totalPage } from "./categoryCards";
 import { FaEllipsis } from "react-icons/fa6";
+
 export const Pagination = ({ page }: { page: number }) => {
   const pageNumbers = [];
   // console.log("page", page);
@@ -12,7 +13,7 @@ export const Pagination = ({ page }: { page: number }) => {
       pageNumbers.push(i);
     }
     if (i === page + 1 && pageNumbers.length - 1 === 0) {
-      console.log("hi123");
+      
 
       pageNumbers.push(pageNumbers[0] + 1);
     }
@@ -20,8 +21,8 @@ export const Pagination = ({ page }: { page: number }) => {
       pageNumbers.push(pageNumbers[pageNumbers.length - 1] + 1);
     }
   }
-  // console.log(pageNumbers);
-
+  // console.log(totalPage,);
+  if (totalPage === 1) return;
   return (
     <div className="flex items-center justify-between w-full  mx-auto mt-8 font-satoshi">
       {/* Previous Button */}

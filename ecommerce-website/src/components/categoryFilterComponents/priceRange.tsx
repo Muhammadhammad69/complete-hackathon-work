@@ -1,46 +1,62 @@
-// components/StaticPriceRange.tsx
 "use client";
-import React, { useState } from "react";
+import {useState } from "react";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-export const StaticPriceRange: React.FC = () => {
-  const minValue = 50; // Fixed minimum price
-  const maxValue = 200; // Fixed maximum price
+import {useFilterContext} from "@/context/filterContext/filtercontext";
+import {IFilterContext} from "@/context/contextTypes";
+export function StaticPriceRange({price}:{price:{minPrice:number,maxPrice:number}}) {
+  // console.log('price',price);
+  const {getFilterValues} = useFilterContext() as IFilterContext;
+  const [value, setValue] = useState<number[]>([50, 150]);
   const [icon, setIcon] = useState(false);
-  
-
+  const handleChange = (newValue: number | number[]) => {
+    if (Array.isArray(newValue)) {
+      const [start, end] = newValue;
+      // Ensure minimum distance of 50
+      if (end - start >= 100) {
+        setValue([start, end]);
+      }
+    }
+    getFilterValues("price",value);
+  };
   return (
-    <div className="bg-white mx-auto w-[100%] sm:w-[248px] font-satoshi ">
+    <div className="bg-white mx-auto w-[100%] sm:w-[248px] font-satoshi">
       <div className="flex justify-between  cursor-pointer" onClick={()=> {
         setIcon(!icon)
       }}>
         <h2 className="text-[20px] font-bold ">Price</h2>
         {icon ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </div>
-      {icon &&
-      <>
-      <div className="relative w-full mb-8 mt-8">
-        {/* Range Track */}
-        <div className="relative w-full h-2 bg-mainColor rounded-full">
-          <div className="absolute h-full bg-black rounded-full left-[21%] w-[56%]"></div>
-        </div>
-
-        {/* Min Handle */}
-        <div className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 bg-black rounded-full left-[19%] "></div>
-
-        {/* Max Handle */}
-        <div className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 bg-black rounded-full left-[73%]"></div>
+      {icon && (
+        <>
+        
+      <div className="mt-8">
+        
+        <Slider
+          range
+          className="t-slider"
+          min={0}
+          max={price.maxPrice}
+          value={value}
+          defaultValue={[78, 150]}
+          onChange={handleChange}
+          step={1}
+          allowCross={false}
+        />
       </div>
+      <div className="flex justify-between w-[80%] mx-auto mt-2">
 
-       {/* Price Labels */}
-      <div className="flex justify-around gap-x-3 mt-4 font-satoshi text-[14px]">
-        <span>${minValue}</span>
-        <span>${maxValue}</span>
+      <p className="mt-2">
+        Min: ${value[0]}
+      </p>
+      <p className="mt-2">
+        Max: ${value[1]}
+      </p>
       </div>
       </>
-      }
-      <hr className="mt-4 mb-4"/>
+      )}
+      <hr  className="mt-4 mb-4"/>
     </div>
   );
-};
-
-
+}

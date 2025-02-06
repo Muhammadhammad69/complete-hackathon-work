@@ -5,7 +5,7 @@ import { useCart } from "@/context/cartContext/cartContext";
 import { ICartContext } from "@/context/contextTypes";
 export const CartPage = () => {
   const { cart } = useCart() as ICartContext;
-  // console.log(cart);
+  // console.log("cart", cart);
   return (
     <div className="w-[95%] 2xl:w-[1400px] mx-auto ">
       <div className="space-y-8">

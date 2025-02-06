@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 
 import { ProductDetailComp } from "@/components/ProductDetailPageComp/productDetailPage";
 import { IProduct } from "@/types/productType";
+import { Loader } from "@/components/loaders/loader";
 const Product = ({ params }: { params: { id: string } }) => {
   const [singleProduct, setSingleProduct] = useState<IProduct>({} as IProduct);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +32,7 @@ const Product = ({ params }: { params: { id: string } }) => {
     getProduct();
   }, [params.id]);
   
-  if(isLoading) return <div>Loading...</div>
+  if(isLoading) return <div><Loader info={{height:"min-h-screen",size:150}}/></div>
   if(isError) return <div>Something went wrong</div>
 
   if(singleProduct._id) return (

@@ -20,7 +20,7 @@ export const GET = async (request: NextRequest, { params }: { params: { id: stri
     try {
         // Validate params
         if (!params?.id) {
-            return NextResponse.json({ message: "Invalid ID" }, { status: 400 });
+            return NextResponse.json({success: false, message: "Invalid ID" }, { status: 400 });
         }
 
         // Fetch single product
@@ -30,18 +30,18 @@ export const GET = async (request: NextRequest, { params }: { params: { id: stri
             { cache: "no-store" }
         );
 
-        console.log("Single Product fetched:", singleProduct);
+        // console.log("Single Product fetched:", singleProduct);
 
         // Check if product exists
         if (!singleProduct || singleProduct.length === 0) {
-            console.log("Product not found");
-            return NextResponse.json({ message: "Product not found" }, { status: 404 });
+            // console.log("Product not found");
+            return NextResponse.json({success: false, message: "Product not found" }, { status: 404 });
         }
 
         // Return success response
-        return NextResponse.json({ message: "Success", singleProduct: singleProduct[0] });
+        return NextResponse.json({success: true, message: "Product Found", singleProduct: singleProduct[0] }, { status: 200 });
     } catch (error) {
         console.error("Error fetching product:", error);
-        return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json({success: false, message: "Internal Server Error" }, { status: 500 });
     }
 };

@@ -32,6 +32,10 @@ export const products = defineType({
             name: 'image',
             title: 'Image',
             type: 'image',
+            // 👇 Enables crop and hotspot tools
+            options: {
+                hotspot: true
+            },
         },
         {
             name: "subCategory",

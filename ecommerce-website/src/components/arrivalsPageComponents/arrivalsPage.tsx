@@ -4,12 +4,13 @@ import { IProduct } from "@/types/productType";
 import { ProductCard } from "@/components/productcard/card";
 import { useProductContext } from "@/context/productContext/productContext";
 import { IStates } from "@/context/productContext/productContext";
+import { Loader } from "../loaders/loader";
 
 
 export const ArrivalsPage = () => {
   const { isLoading, newArrivals } = useProductContext() as IStates;
-  console.log("newArrivals ==>", newArrivals);
-  if(isLoading) return <div>Loading...</div>
+  // console.log("newArrivals ==>", newArrivals);
+  if(isLoading) return <div><Loader info={{height:"min-h-screen",size:150}}/></div>
   return (
     <div className=" w-[95%] 2xl:w-[1400px] mx-auto">
       <hr />

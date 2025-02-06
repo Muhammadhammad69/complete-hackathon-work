@@ -7,6 +7,12 @@ import { FooterSec } from "@/components/homepage/footer";
 import { ProductProvider } from "../context/productContext/productContext";
 import { CartProvider } from "@/context/cartContext/cartContext";
 import { FilterContextProvider } from "@/context/filterContext/filtercontext";
+import ScrollToTop from "@/scrollToTop/scroll";
+import { DialogProvider } from "@/context/authDialogContext/dialogContext";
+import { AuthDialog } from "@/components/userComponent/auth/authDialog";
+import { UserProvider } from "@/context/userContext/usercontext";
+import { Toaster } from "react-hot-toast";
+
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",
@@ -44,14 +50,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.variable} antialiased`}
       >
         <ProductProvider>
-          <CartProvider>
-            <FilterContextProvider>
-              <TopHeader />
-              <Header />
-              {children}
-              <FooterSec />
-            </FilterContextProvider>
-          </CartProvider>
+          <UserProvider>
+            <CartProvider>
+              <FilterContextProvider>
+                <DialogProvider>
+                  <TopHeader />
+                  <Header />
+                  <ScrollToTop />
+                  {children}
+                  <Toaster position="top-center" reverseOrder={false} />
+                  <AuthDialog />
+                  <FooterSec />
+                </DialogProvider>
+              </FilterContextProvider>
+            </CartProvider>
+          </UserProvider>
         </ProductProvider>
       </body>
     </html>

@@ -1,9 +1,11 @@
 "use client";
 import { ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useState } from "react";
-
+import {useFilterContext} from "@/context/filterContext/filtercontext";
+import {IFilterContext} from "@/context/contextTypes";
 export const DressStyle = () => {
   const [icon, setIcon] = useState(false);
+  const {applyFilters} = useFilterContext() as IFilterContext;
   return (
     <div className="bg-white mx-auto  w-[100%] sm:w-[248px] font-satoshi">
       <div
@@ -38,7 +40,7 @@ export const DressStyle = () => {
         </div>
         </>
       )}
-      <button className="w-full bg-mainColor border border-borderColor font-satoshi text-[14px] h-[3rem]   rounded-[2rem] mt-4 hover:bg-black hover:text-white shadow-none font-medium">Apply Filter</button>
+      <button className="w-full bg-mainColor border border-borderColor font-satoshi text-[14px] h-[3rem]   rounded-[2rem] mt-4 hover:bg-black hover:text-white shadow-none font-medium" onClick={applyFilters}>Apply Filter</button>
       
     </div>
   );

@@ -15,9 +15,9 @@ export const ProductCard: React.FC<{ product: IProduct }> = ({
   return (
     <>
     <Link href={`/product/${product._id}`}>
-    <div className=" overflow-hidden mx-auto font-satoshi">
+    <div className=" overflow-hidden mx-auto font-satoshi    ">
       {/* Image Section */}
-      <div className=" rounded-[2rem] flex justify-center items-center ">
+      <div className=" rounded-[2rem] flex  ">
         <Image
           src={urlFor(product.image).width(300).height(298).quality(100).url()}
           width={300}
@@ -29,7 +29,7 @@ export const ProductCard: React.FC<{ product: IProduct }> = ({
       </div>
 
       {/* Details Section */}
-      <div className="px-4 pb-4 mt-4 ">
+      <div className="px-2 pb-4 mt-4  ">
         {/* Title */}
         <h3 className="font-semibold text-black font-satoshi text-[16px] sm:text-[20px]">
           {product.name}

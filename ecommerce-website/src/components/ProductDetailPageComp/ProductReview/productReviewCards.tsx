@@ -94,7 +94,7 @@ export const ProductReviewCards = () => {
         })}
       </div>
       <div className="flex justify-center mt-8">
-        <button className="px-16 py-4 border-2 border-borderColor rounded-full  hover:font-bold hover:underline hover:underline-offset-4">Load More Reviews</button>
+        <button className="px-8 py-2 sm:px-12 sm:py-3 border-2 border-borderColor rounded-full  hover:font-bold hover:underline hover:underline-offset-4">Load More Reviews</button>
       </div>
     </div>
   );

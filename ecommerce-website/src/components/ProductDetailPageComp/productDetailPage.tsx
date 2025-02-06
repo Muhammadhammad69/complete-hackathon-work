@@ -42,7 +42,7 @@ const {name, image, description,price, discountPercent, subCategory} = product
           <Tabs />
           <ReviewHead />
           <ProductReviewCards />
-          <ProductSuggestions />
+          <ProductSuggestions product={product}/>
         </div>
       </div>
     </>
