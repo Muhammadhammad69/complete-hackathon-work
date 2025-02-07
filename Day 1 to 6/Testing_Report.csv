@@ -1,0 +1,8 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
+TC_001,Verify product listing functionality,"Open homepage, check if products are displayed",Products should be visible,Products displayed correctly,Passed,Low,    ---,Working as expected
+TC_002,Check product detail page,"Click on a product, check details",Product details should be displayed correctly,Product details displayed properly,Passed,Low,    ---,Detailed view working
+TC_003,Validate product filter functionality,Apply different filters and check results,Only relevant products should be shown,Filtered products displayed correctly,Passed,Medium,    ---,Filters working fine
+TC_004,Test cart operations (Add/Remove/Update),"Add product to cart, update quantity, remove product",Cart should update correctly,Cart updates working fine,Passed,Medium,    ---,No issues found
+TC_005,Test login functionality,Enter valid credentials and login,User should be logged in successfully,Login successful,Passed,High,    ---,Authentication works fine
+TC_006,Test signup functionality,Register with valid details,User should be registered successfully,Signup successful,Passed,High,    ---,Registration working fine
+TC_007,Ensure responsiveness on mobile,Resize browser window > Check layout,Layout adjusts properly to screen size,Responsive layout working as intended,Passed,Medium,-,Test successful
